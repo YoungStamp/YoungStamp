@@ -2,6 +2,9 @@ import Header from "@/Components/Header/Header";
 import Footer from "@/Components/Footer/Footer";
 import { useState } from "react";
 import "@/Routes/Main/Main.scss";
+import DailyChart from "@/Components/Chart/Daily/DailyChart";
+import WeeklyChart from "@/Components/Chart/Weekly/WeeklyChart";
+import MonthlyChart from "@/Components/Chart/Monthly/MonthlyChart";
 
 export default function Main () {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -19,8 +22,7 @@ export default function Main () {
       ),
       tabCont: (
         <div className="contents">
-          <div className="chart">월간 그래프</div>
-          <div className="scale">월별 섭취한 칼로리 </div>
+          <MonthlyChart />
         </div>
       )
     },
@@ -32,21 +34,19 @@ export default function Main () {
       ),
       tabCont: (
         <div className="contents">
-          <div className="chart">주간 그래프</div>
-          <div className="scale">주간 섭취한 칼로리</div>
+          <WeeklyChart />
         </div>
       )
     },
     {
       tabTitle: (
-        <li className="select">
-          <button className={activeIndex===2 ? "is-active" : ""} onClick={() => tabClickHandler(2)}>선택없음</button>
+        <li>
+          <button className={activeIndex===2 ? "is-active" : ""} onClick={() => tabClickHandler(2)}>일간</button>
         </li>
       ),
       tabCont: (
         <div className="contents">
-          <div className="chart">일별 그래프</div>
-          <div className="scale">일별 섭취한 칼로리</div>
+          <DailyChart />
         </div>
       )
     }
@@ -56,11 +56,16 @@ export default function Main () {
     <div>
       <Header />
       <div className="daychart">
-        <ul className="tabs is-boxed">
-          {tabContArr.map((section) => {
-            return section.tabTitle
-          })}
-        </ul>
+        <div style={{display: "flex", justifyContent: "space-between"}}>
+          <ul className="tabs is-boxed">
+            {tabContArr.map((section) => {
+              return section.tabTitle
+            })}
+          </ul>
+          <div className="choose">
+            <button type="button">선택없음</button>
+          </div>
+        </div>
         <div>
           {tabContArr[activeIndex].tabCont}
         </div>
