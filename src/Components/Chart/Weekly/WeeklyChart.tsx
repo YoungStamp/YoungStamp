@@ -1,11 +1,17 @@
 import WeeklyCalories from "./WeeklyCalories";
 import WeeklySavings from "./WeeklySavings";
 
-export default function WeeklyChart () {
+interface WeeklyChartProps {
+  activeWeek: string;
+}
+
+const WeeklyChart: React.FC<WeeklyChartProps> = ({ activeWeek }) => {
   return (
     <div>
-      <WeeklyCalories />
-      <WeeklySavings />
+      <WeeklyCalories activeWeek={activeWeek} />
+      <WeeklySavings activeWeek={activeWeek} />
     </div>
   );
 }
+
+export default WeeklyChart;

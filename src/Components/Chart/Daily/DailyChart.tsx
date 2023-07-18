@@ -1,11 +1,17 @@
 import DailyCalories from "./DailyCalories";
 import DailySavings from "./DailySavings";
 
-export default function DailyChart () {
+interface DailyChartProps {
+  activeDaily: string;
+}
+
+const DailyChart: React.FC<DailyChartProps> = ({ activeDaily }) => {
   return (
     <div>
-      <DailyCalories />
-      <DailySavings />
+      <DailyCalories activeDaily={activeDaily} />
+      <DailySavings activeDaily={activeDaily} />
     </div>
   );
 }
+
+export default DailyChart;

@@ -21,11 +21,49 @@
       }
     }
   }
+
   .choose {
-    button {
+    .dropdown-wrapper {
+      position: relative;
+      display: inline-block;
+      &.is-active .dropdown-menu {
+        display: block;
+      }
+    }
+
+    button.dropdown-toggle {
       background-color: #f3f3f3;
       color: var(--text);
       height: 36px;
+      &.is-active {
+        color: #fff;
+        background-color: var(--primary1);
+      }
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #f3f3f3;
+      padding: 6px;
+      border-radius: 0 0 6px 6px;
+      z-index: 9;
+      li {
+        button {
+          display: block;
+          width: 100%;
+          background-color: #f3f3f3;
+          color: var(--text);
+          padding: 6px;
+          transition: .3s;
+          &:hover {
+            background-color: var(--primary1);
+            color: #fff;
+          }
+        }
+      }
     }
   }
   div.contents {
@@ -35,7 +73,6 @@
   }
 }
 
-// 임시 스타일
 .youtube {
   background-color: #f3f3f3;
   border-radius: 6px;
@@ -51,5 +88,12 @@
   margin-bottom: 30px;
   &:last-child {
     margin-bottom: 0;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-height: 400px;
+    padding: 20px 0;
   }
 }

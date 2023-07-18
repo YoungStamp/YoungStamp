@@ -9,6 +9,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 ChartJS.register(
   CategoryScale,
@@ -19,57 +20,74 @@ ChartJS.register(
   Legend
 );
 
-export default function WeeklySavings () {
-  
-  const [chartData, setChartData] = useState({
-    labels: [""],
-    datasets: [
-      {
-        label: "",
-        data: [0],
-        borderColor: "",
-        backgroundColor: "",
-      }
-    ],
-  });
+interface WeeklySavings {
+  _id: string;
+  totalAmount: number;
+}
 
-  const [chartOptions, setChartOptions] = useState({});
+interface WeeklyChartProps {
+  activeWeek: string;
+}
+
+const WeeklySavings: React.FC<WeeklyChartProps> = ({ activeWeek }) => {
+  const [chartData, setChartData] = useState<WeeklySavings[]>([]);
+  const [period, setPeriod] = useState("weekly"); 
+  
+  useEffect(() => {
+    if (activeWeek === "선택없음") {
+      setPeriod("weekly");
+    } else {
+      setPeriod(activeWeek);
+    }
+  }, [activeWeek]);
 
   useEffect(() => {
-    setChartData({
-      labels: ["1주차", "2주차", "3주차", "4주차"],
-      datasets: [
-        {
-          label: "저축양",
-          data: [2600, 1300, 1800, 2500],
-          borderColor: "rgba(42, 160, 186)",
-          backgroundColor: "rgba(42, 160, 186, 0.8)",
-        }
-      ],
-    });
-    setChartOptions({
-      responsive: false,
-      plugins: {
-        legend: {
-          position: "top"
-        },
-        title: {
-          display: true,
-        },
-      },
-      layout: {
-        padding: {
-          left: 10,
-          right: 10
-        }
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/kdt5/expenses/summary", {
+          params: {
+            period: period,
+            userId: "team6",
+            category: "삿다치고"
+          },
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(response);
+        setChartData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-    });
+    };
+
+    fetchData();
   }, []);
-  
+
+  console.log(chartData);
 
   return (
     <div className="chart">
-      <Bar options={chartOptions} data={chartData} style={{margin: "0 auto", height: "400px"}}/>
+      {chartData && (
+        <div>
+          <Bar
+            data={{
+              labels: activeWeek === "선택없음" ? chartData.map((item) => item._id) : [activeWeek],
+              datasets: [
+                {
+                  label: "주간 저축양",
+                  data: activeWeek === "선택없음" ? chartData.map((item) => item.totalAmount) : [chartData.find((item) => item._id === activeWeek)?.totalAmount || 0],
+                  backgroundColor: "rgba(92, 187, 144, 0.8)",
+                  borderColor: "rgba(92, 187, 144, 1)",
+                  borderWidth: 1,
+                },
+              ],
+            }}
+          />
+        </div>
+      )}
     </div>
   );
-};
+}
+
+export default WeeklySavings;

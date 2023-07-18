@@ -1,11 +1,17 @@
 import MonthlyCalories from "./MonthlyCalories";
 import MonthlySavings from "./MonthlySavings";
 
-export default function MonthlyChart () {
+interface MonthlyChartProps {
+  activeMonth: string;
+}
+
+const MonthlyChart: React.FC<MonthlyChartProps> = ({ activeMonth }) => {
   return (
     <div>
-      <MonthlyCalories />
-      <MonthlySavings />
+      <MonthlyCalories activeMonth={activeMonth} />
+      <MonthlySavings activeMonth={activeMonth} />
     </div>
-  )
-}
+  );
+};
+
+export default MonthlyChart;
