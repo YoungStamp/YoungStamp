@@ -6,6 +6,9 @@ import "@/Routes/Main/Main.scss";
 import DailyChart from "@/Components/Chart/Daily/DailyChart";
 import WeeklyChart from "@/Components/Chart/Weekly/WeeklyChart";
 import MonthlyChart from "@/Components/Chart/Monthly/MonthlyChart";
+import { useState } from "react";
+import "@/Routes/Main/Main.scss";
+import Youtube from "@/Components/YouTube/Youtube.tsx";
 
 export default function Main() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -193,7 +196,6 @@ export default function Main() {
 
   return (
     <div>
-      <Header />
       <div className="daychart">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <ul className="tabs is-boxed">
@@ -222,10 +224,8 @@ export default function Main() {
         <div>{tabContArr[activeIndex].tabCont}</div>
       </div>
       <div className="youtube">
-        {/* 임시 내용 */}
-        youtube
+        <Youtube />
       </div>
-      <Footer />
     </div>
   );
 }
