@@ -83,6 +83,16 @@ const WeeklySavings: React.FC<WeeklyChartProps> = ({ activeWeek }) => {
                 },
               ],
             }}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              layout: {
+                padding: {
+                  left: 30,
+                  right: 30
+                }
+              }
+            }}
           />
         </div>
       )}

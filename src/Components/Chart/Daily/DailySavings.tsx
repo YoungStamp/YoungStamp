@@ -75,6 +75,16 @@ const DailySavings: React.FC<DailyChartProps> = ({ activeDaily }) => {
                 },
               ],
             }}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              layout: {
+                padding: {
+                  left: 30,
+                  right: 30
+                }
+              }
+            }}
           />
         </div>
       )}

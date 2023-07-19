@@ -75,6 +75,16 @@ const MonthlyCalories: React.FC<MonthlyCaloriesProps> = ({ activeMonth }) => {
                 },
               ],
             }}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              layout: {
+                padding: {
+                  left: 30,
+                  right: 30
+                }
+              }
+            }}
           />
         </div>
       )}
