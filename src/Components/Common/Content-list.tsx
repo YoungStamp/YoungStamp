@@ -20,13 +20,17 @@ const reducer = (state: State, action: Action): State => {
 export default function ContentList(props: { date: string, category: string }) {
   const [state, dispatch] = useReducer(reducer, { id: null, description: "", amount: 0 });
   const [isDiv, setIsDiv] = useState<Record<string, boolean>>({});
-  const {changeExpend, deleteExpend} = useDataQuery()
 
   const params: SearchParamsType = {
     q: props.category,
     userId: "team6"
   };
-  const { getSearchData : {isLoading, error, data: searchData} } = useDataQuery(params)
+  const {
+    changeExpend, deleteExpend
+    , getSearchData: { isLoading, error, data: searchData }
+  }
+    = useDataQuery(params);
+
   const handleChange = (id: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     if (state.id !== id) {

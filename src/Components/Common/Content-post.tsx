@@ -9,8 +9,6 @@ export default function ContentPost({ todayDate, categoryName }: { todayDate: st
   const [money, setMoney] = useState(0);
   const [isFromVisible, setIsFromVisible] = useState(false);
   const { addExpend} = useDataQuery();
-
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const postData: ExpendType =

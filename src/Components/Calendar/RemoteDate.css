@@ -1,6 +1,7 @@
 .controll-wrap {
   padding: 18px 0;
   width: 100%;
+  color: #fff;
 }
 .controll-wrap button {
   background-color: transparent;
@@ -9,7 +10,8 @@
 .controll-wrap .controll {
   display: flex;
   justify-content: center;
-  width: 420px;
+  max-width: 420px;
+  width: 100%;
   margin: auto;
   position: relative;
 }

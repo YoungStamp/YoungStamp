@@ -1,8 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import generateCalendar from "@/Common/calendar";
 import "./Calendar.scss";
-// import axios from "axios";
-// import dayjs from "dayjs";
 import { useQuery, } from "@tanstack/react-query";
 import { getSummary } from "@/Api/api.ts";
 import dayjs from "dayjs";
@@ -34,9 +32,6 @@ export default function Calendar(props: Props) {
       setMonth(1);
     }
     makeCalendar(year, month);
-    // (async () => {
-    //   await tempApi();
-    // })();
   }, [month, year]);
 
   const dayList = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
@@ -58,23 +53,6 @@ export default function Calendar(props: Props) {
     });
   },{staleTime: 1000*60});
 
-
-  // async function tempApi() {
-  //   try {
-  //     const res = await axios.get("/kdt5/expenses/summary", {
-  //       params: {
-  //         period: "daily",
-  //         userId: "team6",
-  //         category: category
-  //       }
-  //     });
-  //     const data: ResponseCalendar[] = res.data;
-  //     const arr: CalendarMap[] = data.map((v) => [v._id, v.totalAmount]);
-  //     sth.current = new Map<string, number>(arr);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 
   if (isLoading) {
     return "Loading...";

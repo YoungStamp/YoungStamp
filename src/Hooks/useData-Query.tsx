@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteExpense, getSearchExpense, postExpense, putChange } from "@/Api/api.ts";
 import dayjs from "dayjs";
 
+
 export default function useDataQuery(params?: SearchParamsType) {
   const queryClient = useQueryClient();
 
@@ -41,5 +42,5 @@ export default function useDataQuery(params?: SearchParamsType) {
         queryClient.invalidateQueries(["summaryData"]);
       }
     });
-  return { addExpend, getSearchData, changeExpend, deleteExpend };
+  return { addExpend, getSearchData, changeExpend, deleteExpend, };
 }

@@ -15,7 +15,7 @@ export default defineConfig({
     host: "localhost",
     proxy: {
       "/kdt5": {
-        target: "http://52.78.195.183:3003/api",
+        target: "https://chickenlecture.xyz/api",
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/kdt5/, ""),

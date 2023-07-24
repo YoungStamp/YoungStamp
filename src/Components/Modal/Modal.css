@@ -25,12 +25,21 @@
   align-items: center;
   border-radius: 12px;
   overflow: hidden;
+  padding-bottom: 30px;
 }
 
 .modal-close {
   bottom: 10px;
+  max-width: 410px;
+  height: 46px;
   width: 100%;
   margin: auto;
+  transition: 0.2s;
+  color: #fff;
+}
+.modal-close:hover {
+  color: #fff;
+  background-color: var(--primary2);
 }
 
 /*# sourceMappingURL=Modal.css.map */
